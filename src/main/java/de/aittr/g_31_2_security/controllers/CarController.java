@@ -16,16 +16,20 @@ public class CarController {
         this.service = service;
     }
 
+    // Метод доступен всем, включая незарегистрированных пользователей
     @GetMapping("/all")
     public List<Car> getAll() {
         return service.getAll();
     }
 
+    // Метод доступен только зарегистрированным пользователям
     @GetMapping("/by_id/{id}")
     public Car getById(@PathVariable int id) {
         return service.getById(id);
     }
 
+    // Метод доступен только зарегистрированным пользователям,
+    // имеющим роль ADMIN
     @PostMapping("/save")
     public Car save(@RequestBody Car car) {
         return service.save(car);
